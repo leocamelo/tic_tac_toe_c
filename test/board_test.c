@@ -14,12 +14,13 @@ void test_board_available_cells_should_return_all_empty_cells() {
   Board board = {{{NIL, X, X}, {X, NIL, X}, {X, X, NIL}}};
   BoardSubset subset = board_available_cells(&board);
 
+  int i;
   const int expectedSize = 3;
   const int expected[][2] = {{0, 0}, {1, 1}, {2, 2}};
 
   TEST_ASSERT_EQUAL_INT(expectedSize, subset.size);
 
-  for (int i = 0; i < expectedSize; i++) {
+  for (i = 0; i < expectedSize; i++) {
     TEST_ASSERT_EQUAL_INT_ARRAY(expected[i], subset.cells[i], 2);
   }
 }
