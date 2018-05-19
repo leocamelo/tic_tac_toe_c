@@ -2,6 +2,7 @@ language: c
 
 addons:
   apt:
+    update: true
     packages:
       - check
 
