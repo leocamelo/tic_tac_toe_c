@@ -2,29 +2,27 @@ CC=gcc
 CFLAGS=-Wall -O3
 
 MAIN=src/main.c
-HEADERS=$(wildcard src/*.h)
 SOURCES=$(filter-out $(MAIN), $(wildcard src/*.c))
 TARGET=tic_tac_toe
 
-TEST=test/unity/unity
-TEST_SOURCES=$(wildcard test/*.c)
+TEST_MAIN=test/main.c
+TEST_SOURCES=$(wildcard test/check_*.c)
 TEST_TARGET=$(TARGET)_test
-
-INITBIN=mkdir -p bin
+TEST_LINKS=-lcheck
 
 all: $(TARGET)
 
 $(TARGET): $(MAIN)
-	$(INITBIN)
+	mkdir -p bin
 	$(CC) $(SOURCES) $(MAIN) $(CFLAGS) -o bin/$(TARGET)
 
 run: $(MAIN)
 	make $(TARGET)
 	./bin/$(TARGET)
 
-test: $(MAIN) test/main.c $(TEST).h
-	$(INITBIN)
-	$(CC) $(TEST).c $(SOURCES) $(TEST_SOURCES) $(CFLAGS) -o bin/$(TEST_TARGET)
+test: $(TEST_MAIN)
+	make $(TARGET)
+	$(CC) $(SOURCES) $(TEST_SOURCES) $(TEST_MAIN) $(CFLAGS) $(TEST_LINKS) -o bin/$(TEST_TARGET)
 	./bin/$(TEST_TARGET)
 
 clean:

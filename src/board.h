@@ -18,6 +18,8 @@ typedef struct {
 
 void board_empty_cell_at(Board *board, int x, int y);
 
+void board_subset_free(BoardSubset *subset);
+
 BoardSubset board_available_cells(Board *board);
 
 int board_is_full(Board *board);

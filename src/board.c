@@ -18,10 +18,15 @@ static int board_available_cells_count(Board *board) {
   return count;
 }
 
+void board_subset_free(BoardSubset *subset) {
+  free(*subset->cells);
+  free(subset->cells);
+}
+
 BoardSubset board_available_cells(Board *board) {
   int aux = 0, i, j;
-  const int count = board_available_cells_count(board);
-  int **arr = malloc(sizeof(int*) * count);
+  BoardSubset subset = { board_available_cells_count(board) };
+  int **arr = malloc(sizeof(int*) * subset.size);
 
   for (i = 0; i < BOARD_SIZE; i++) {
     for (j = 0; j < BOARD_SIZE; j++) {
@@ -33,7 +38,8 @@ BoardSubset board_available_cells(Board *board) {
       }
     }
   }
-  return (BoardSubset){ count, arr };
+  subset.cells = arr;
+  return subset;
 }
 
 int board_is_full(Board *board) {
