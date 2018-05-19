@@ -8,7 +8,7 @@ TARGET=tic_tac_toe
 TEST_MAIN=test/main.c
 TEST_SOURCES=$(wildcard test/check_*.c)
 TEST_TARGET=$(TARGET)_test
-TEST_LINKS=-lcheck
+TEST_LINKS=-lm -lcheck
 
 all: $(TARGET)
 
