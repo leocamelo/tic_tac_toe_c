@@ -5,7 +5,7 @@
 START_TEST(test_computer_move_should_return_the_center_point_when_it_cans) {
   int center = BOARD_SIZE / 2;
 
-  Board board = {{{NIL}}};
+  Board board = {{{_}}};
   CellPoint point = computer_move(board);
 
   ck_assert_int_eq(center, point.x);
@@ -14,7 +14,12 @@ START_TEST(test_computer_move_should_return_the_center_point_when_it_cans) {
 END_TEST
 
 START_TEST(test_computer_move_should_return_at_last_a_random_empty_point) {
-  Board board = {{{NIL, X, O}, {O, O, X}, {X, O, O}}};
+  Board board = {{
+    {_, X, O},
+    {O, O, X},
+    {X, O, O}
+  }};
+
   CellPoint point = computer_move(board);
 
   ck_assert_int_eq(0, point.x);

@@ -6,7 +6,7 @@ static CellPoint computer_center_move(Board *board) {
   CellPoint point;
   int index = BOARD_SIZE / 2;
 
-  point.x = point.y = (board->cells[index][index] == NIL ? index : -1);
+  point.x = point.y = (board->cells[index][index] == _ ? index : -1);
   return point;
 }
 

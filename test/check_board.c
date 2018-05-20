@@ -7,72 +7,115 @@ START_TEST(test_board_empty_cell_at_should_set_cell_to_nil) {
   ck_assert(board.cells[0][0] == X);
 
   board_empty_cell_at(&board, &(CellPoint){0, 0});
-  ck_assert_int_eq(board.cells[0][0], NIL);
+  ck_assert_int_eq(board.cells[0][0], _);
 }
 END_TEST
 
 START_TEST(test_board_available_cells_should_return_all_empty_cells) {
-  Board board = {{{NIL, X, X}, {X, NIL, X}, {X, X, NIL}}};
-  BoardSubset available_cells = board_available_cells(&board);
+  Board board = {{
+    {_, X, X},
+    {X, _, X},
+    {X, X, _}
+  }};
 
   int i;
   const int expectedSize = 3;
   const int expected[][2] = {{0, 0}, {1, 1}, {2, 2}};
+  BoardSubset available_cells = board_available_cells(&board);
 
-  ck_assert_int_eq(expectedSize, available_cells.size);
+  ck_assert_int_eq(available_cells.size, expectedSize);
 
   for (i = 0; i < expectedSize; i++) {
-    ck_assert_int_eq(expected[i][0], available_cells.points[i].x);
-    ck_assert_int_eq(expected[i][1], available_cells.points[i].y);
+    ck_assert_int_eq(available_cells.points[i].x, expected[i][0]);
+    ck_assert_int_eq(available_cells.points[i].y, expected[i][1]);
   }
   board_subset_free(&available_cells);
 }
 END_TEST
 
 START_TEST(test_board_is_full_when_is_not_fully_marked_should_return_false) {
-  Board board = {{{X, O, NIL}, {O, X, O}, {X, O, X}}};
+  Board board = {{
+    {X, O, _},
+    {O, X, O},
+    {X, O, X}
+  }};
   ck_assert_int_eq(board_is_full(&board), 0);
 }
 END_TEST
 
 START_TEST(test_board_is_full_when_is_fully_marked_should_return_true) {
-  Board board = {{{X, O, X}, {O, X, O}, {X, O, X}}};
+  Board board = {{
+    {X, O, X},
+    {O, X, O},
+    {X, O, X}
+  }};
   ck_assert_int_eq(board_is_full(&board), 1);
 }
 END_TEST
 
 START_TEST(test_board_has_match_when_doenst_have_should_return_false) {
-  Board board = {{{NIL}}};
+  Board board = {{{_}}};
   ck_assert_int_eq(board_has_match(&board), 0);
 }
 END_TEST
 
 START_TEST(test_board_has_match_when_have_in_diagonal_lr_should_return_true) {
-  Board board_x = {{{X, NIL, NIL}, {NIL, X, NIL}, {NIL, NIL, X}}};
-  Board board_o = {{{O, NIL, NIL}, {NIL, O, NIL}, {NIL, NIL, O}}};
+  Board board_x = {{
+    {X, _, _},
+    {_, X, _},
+    {_, _, X}
+  }};
+  Board board_o = {{
+    {O, _, _},
+    {_, O, _},
+    {_, _, O}
+  }};
   ck_assert_int_eq(board_has_match(&board_x), 1);
   ck_assert_int_eq(board_has_match(&board_o), 1);
 }
 END_TEST
 
 START_TEST(test_board_has_match_when_have_in_diagonal_rl_should_return_true) {}
-  Board board_x = {{{NIL, NIL, X}, {NIL, X, NIL}, {X, NIL, NIL}}};
-  Board board_o = {{{NIL, NIL, O}, {NIL, O, NIL}, {O, NIL, NIL}}};
+  Board board_x = {{
+    {_, _, X},
+    {_, X, _},
+    {X, _, _}}};
+  Board board_o = {{
+    {_, _, O},
+    {_, O, _},
+    {O, _, _}
+  }};
   ck_assert_int_eq(board_has_match(&board_x), 1);
   ck_assert_int_eq(board_has_match(&board_o), 1);
 END_TEST
 
 START_TEST(test_board_has_match_when_have_in_horizontal_should_return_true) {
-  Board board_x = {{{X, X, X}, {NIL, NIL, NIL}, {NIL, NIL, NIL}}};
-  Board board_o = {{{NIL, NIL, NIL}, {O, O, O}, {NIL, NIL, NIL}}};
+  Board board_x = {{
+    {X, X, X},
+    {_, _, _},
+    {_, _, _}
+  }};
+  Board board_o = {{
+    {_, _, _},
+    {O, O, O},
+    {_, _, _}
+  }};
   ck_assert_int_eq(board_has_match(&board_x), 1);
   ck_assert_int_eq(board_has_match(&board_o), 1);
 }
 END_TEST
 
 START_TEST(test_board_has_match_when_have_in_vertical_should_return_true) {
-  Board board_x = {{{NIL, X, NIL}, {NIL, X, NIL}, {NIL, X, NIL}}};
-  Board board_o = {{{NIL, NIL, O}, {NIL, NIL, O}, {NIL, NIL, O}}};
+  Board board_x = {{
+    {_, X, _},
+    {_, X, _},
+    {_, X, _}
+  }};
+  Board board_o = {{
+    {_, _, O},
+    {_, _, O},
+    {_, _, O}
+  }};
   ck_assert_int_eq(board_has_match(&board_x), 1);
   ck_assert_int_eq(board_has_match(&board_o), 1);
 }

@@ -4,7 +4,7 @@
 #define BOARD_SIZE 3
 
 typedef enum {
-  NIL, X, O
+  _, X, O
 } Cell;
 
 typedef struct {

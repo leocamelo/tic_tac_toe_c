@@ -4,7 +4,7 @@
 #define IS_MATCH(count) abs(count) == BOARD_SIZE
 
 void board_empty_cell_at(Board *board, CellPoint *point) {
-  board->cells[point->x][point->y] = NIL;
+  board->cells[point->x][point->y] = _;
 }
 
 static int board_available_cells_count(Board *board) {
@@ -12,7 +12,7 @@ static int board_available_cells_count(Board *board) {
 
   for (i = 0; i < BOARD_SIZE; i++) {
     for (j = 0; j < BOARD_SIZE; j++) {
-      if (board->cells[i][j] == NIL) count++;
+      if (board->cells[i][j] == _) count++;
     }
   }
   return count;
@@ -29,7 +29,7 @@ BoardSubset board_available_cells(Board *board) {
 
   for (i = 0; i < BOARD_SIZE; i++) {
     for (j = 0; j < BOARD_SIZE; j++) {
-      if (board->cells[i][j] == NIL) {
+      if (board->cells[i][j] == _) {
         subset.points[aux] = (CellPoint){i, j};
         aux++;
       }
@@ -43,7 +43,7 @@ int board_is_full(Board *board) {
 
   for (i = 0; i < BOARD_SIZE; i++) {
     for (j = 0; j < BOARD_SIZE; j++) {
-      if (board->cells[i][j] == NIL) return 0;
+      if (board->cells[i][j] == _) return 0;
     }
   }
   return 1;

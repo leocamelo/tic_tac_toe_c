@@ -3,7 +3,7 @@
 #include "board.h"
 
 int main() {
-  Board board = {{{NIL}}};
+  Board board = {{{_}}};
   BoardSubset available_cells = board_available_cells(&board);
   CellPoint point = available_cells.points[0];
 
