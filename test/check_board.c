@@ -1,5 +1,4 @@
 #include <stdlib.h>
-#include <stdio.h>
 #include <check.h>
 #include "check_board.h"
 #include "../src/board.h"
