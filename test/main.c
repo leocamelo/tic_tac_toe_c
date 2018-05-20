@@ -1,11 +1,13 @@
 #include <stdlib.h>
 #include <check.h>
 #include "check_board.h"
+#include "check_computer.h"
 
 static Suite *tic_tac_toe_suite() {
   Suite *suite = suite_create("tic_tac_toe");
 
   suite_add_tcase(suite, board_tcase());
+  suite_add_tcase(suite, computer_tcase());
 
   return suite;
 }
