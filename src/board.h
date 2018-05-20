@@ -8,15 +8,20 @@ typedef enum {
 } Cell;
 
 typedef struct {
+  int x;
+  int y;
+} CellPoint;
+
+typedef struct {
   Cell cells[BOARD_SIZE][BOARD_SIZE];
 } Board;
 
 typedef struct {
   const int size;
-  int **cells;
+  CellPoint *points;
 } BoardSubset;
 
-void board_empty_cell_at(Board *board, int x, int y);
+void board_empty_cell_at(Board *board, CellPoint *point);
 
 void board_subset_free(BoardSubset *subset);
 

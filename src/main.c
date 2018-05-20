@@ -4,10 +4,10 @@
 
 int main() {
   Board board = {{{NIL}}};
-
   BoardSubset available_cells = board_available_cells(&board);
-  int *cell = available_cells.cells[0];
+  CellPoint point = available_cells.points[0];
 
-  printf("(%d,%d)\n", cell[0], cell[1]);
+  printf("(%d,%d)\n", point.x, point.y);
+  board_subset_free(&available_cells);
   return 0;
 }

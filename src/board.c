@@ -3,8 +3,8 @@
 
 #define IS_MATCH(count) abs(count) == BOARD_SIZE
 
-void board_empty_cell_at(Board *board, int x, int y) {
-  board->cells[x][y] = NIL;
+void board_empty_cell_at(Board *board, CellPoint *point) {
+  board->cells[point->x][point->y] = NIL;
 }
 
 static int board_available_cells_count(Board *board) {
@@ -19,26 +19,22 @@ static int board_available_cells_count(Board *board) {
 }
 
 void board_subset_free(BoardSubset *subset) {
-  free(*subset->cells);
-  free(subset->cells);
+  free(subset->points);
 }
 
 BoardSubset board_available_cells(Board *board) {
   int aux = 0, i, j;
-  BoardSubset subset = { board_available_cells_count(board) };
-  int **arr = malloc(sizeof(int*) * subset.size);
+  int count = board_available_cells_count(board);
+  BoardSubset subset = { count, malloc(sizeof(CellPoint) * count) };
 
   for (i = 0; i < BOARD_SIZE; i++) {
     for (j = 0; j < BOARD_SIZE; j++) {
       if (board->cells[i][j] == NIL) {
-        arr[aux] = malloc(sizeof(int) * 2);
-        arr[aux][0] = i;
-        arr[aux][1] = j;
+        subset.points[aux] = (CellPoint){i, j};
         aux++;
       }
     }
   }
-  subset.cells = arr;
   return subset;
 }
 

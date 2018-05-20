@@ -1,4 +1,5 @@
 #include <stdlib.h>
+#include <stdio.h>
 #include <check.h>
 #include "check_board.h"
 #include "../src/board.h"
@@ -7,26 +8,26 @@ START_TEST(test_board_empty_cell_at_should_set_cell_to_nil) {
   Board board = {{{X}}};
   ck_assert(board.cells[0][0] == X);
 
-  board_empty_cell_at(&board, 0, 0);
+  board_empty_cell_at(&board, &(CellPoint){0, 0});
   ck_assert_int_eq(board.cells[0][0], NIL);
 }
 END_TEST
 
 START_TEST(test_board_available_cells_should_return_all_empty_cells) {
   Board board = {{{NIL, X, X}, {X, NIL, X}, {X, X, NIL}}};
-  BoardSubset subset = board_available_cells(&board);
+  BoardSubset available_cells = board_available_cells(&board);
 
   int i;
   const int expectedSize = 3;
   const int expected[][2] = {{0, 0}, {1, 1}, {2, 2}};
 
-  ck_assert_int_eq(expectedSize, subset.size);
+  ck_assert_int_eq(expectedSize, available_cells.size);
 
   for (i = 0; i < expectedSize; i++) {
-    ck_assert_int_eq(expected[i][0], subset.cells[i][0]);
-    ck_assert_int_eq(expected[i][1], subset.cells[i][1]);
+    ck_assert_int_eq(expected[i][0], available_cells.points[i].x);
+    ck_assert_int_eq(expected[i][1], available_cells.points[i].y);
   }
-  board_subset_free(&subset);
+  board_subset_free(&available_cells);
 }
 END_TEST
 
