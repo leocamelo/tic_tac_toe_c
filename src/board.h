@@ -2,6 +2,7 @@
 #define BOARD_H
 
 #define BOARD_SIZE 3
+#define CELL_IS_EMPTY(cell) cell == _
 
 typedef enum {
   _, X, O
@@ -20,6 +21,8 @@ typedef struct {
   const int size;
   CellPoint *points;
 } BoardSubset;
+
+Board board_create();
 
 void board_empty_cell_at(Board *board, CellPoint *point);
 

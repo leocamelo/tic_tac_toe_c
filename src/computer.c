@@ -3,11 +3,12 @@
 #include "computer.h"
 
 static CellPoint computer_center_move(Board *board) {
-  CellPoint point;
-  int index = BOARD_SIZE / 2;
+  int center = BOARD_SIZE / 2;
 
-  point.x = point.y = (board->cells[index][index] == _ ? index : -1);
-  return point;
+  if (CELL_IS_EMPTY(board->cells[center][center])) {
+    return (CellPoint){center, center};
+  }
+  return (CellPoint){-1, -1};
 }
 
 static CellPoint computer_random_move(Board *board) {

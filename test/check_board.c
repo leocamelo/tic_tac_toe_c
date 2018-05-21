@@ -7,7 +7,7 @@ START_TEST(test_board_empty_cell_at_should_set_cell_to_nil) {
   ck_assert(board.cells[0][0] == X);
 
   board_empty_cell_at(&board, &(CellPoint){0, 0});
-  ck_assert_int_eq(board.cells[0][0], _);
+  ck_assert(CELL_IS_EMPTY(board.cells[0][0]));
 }
 END_TEST
 
@@ -39,7 +39,7 @@ START_TEST(test_board_is_full_when_is_not_fully_marked_should_return_false) {
     {O, X, O},
     {X, O, X}
   }};
-  ck_assert_int_eq(board_is_full(&board), 0);
+  ck_assert(!board_is_full(&board));
 }
 END_TEST
 
@@ -49,13 +49,13 @@ START_TEST(test_board_is_full_when_is_fully_marked_should_return_true) {
     {O, X, O},
     {X, O, X}
   }};
-  ck_assert_int_eq(board_is_full(&board), 1);
+  ck_assert(board_is_full(&board));
 }
 END_TEST
 
 START_TEST(test_board_has_match_when_doenst_have_should_return_false) {
-  Board board = {{{_}}};
-  ck_assert_int_eq(board_has_match(&board), 0);
+  Board board = board_create();
+  ck_assert(!board_has_match(&board));
 }
 END_TEST
 
@@ -70,8 +70,8 @@ START_TEST(test_board_has_match_when_have_in_diagonal_lr_should_return_true) {
     {_, O, _},
     {_, _, O}
   }};
-  ck_assert_int_eq(board_has_match(&board_x), 1);
-  ck_assert_int_eq(board_has_match(&board_o), 1);
+  ck_assert(board_has_match(&board_x));
+  ck_assert(board_has_match(&board_o));
 }
 END_TEST
 
@@ -79,14 +79,15 @@ START_TEST(test_board_has_match_when_have_in_diagonal_rl_should_return_true) {}
   Board board_x = {{
     {_, _, X},
     {_, X, _},
-    {X, _, _}}};
+    {X, _, _}
+  }};
   Board board_o = {{
     {_, _, O},
     {_, O, _},
     {O, _, _}
   }};
-  ck_assert_int_eq(board_has_match(&board_x), 1);
-  ck_assert_int_eq(board_has_match(&board_o), 1);
+  ck_assert(board_has_match(&board_x));
+  ck_assert(board_has_match(&board_o));
 END_TEST
 
 START_TEST(test_board_has_match_when_have_in_horizontal_should_return_true) {
@@ -100,8 +101,8 @@ START_TEST(test_board_has_match_when_have_in_horizontal_should_return_true) {
     {O, O, O},
     {_, _, _}
   }};
-  ck_assert_int_eq(board_has_match(&board_x), 1);
-  ck_assert_int_eq(board_has_match(&board_o), 1);
+  ck_assert(board_has_match(&board_x));
+  ck_assert(board_has_match(&board_o));
 }
 END_TEST
 
@@ -116,8 +117,8 @@ START_TEST(test_board_has_match_when_have_in_vertical_should_return_true) {
     {_, _, O},
     {_, _, O}
   }};
-  ck_assert_int_eq(board_has_match(&board_x), 1);
-  ck_assert_int_eq(board_has_match(&board_o), 1);
+  ck_assert(board_has_match(&board_x));
+  ck_assert(board_has_match(&board_o));
 }
 END_TEST
 

@@ -5,11 +5,11 @@
 START_TEST(test_computer_move_should_return_the_center_point_when_it_cans) {
   int center = BOARD_SIZE / 2;
 
-  Board board = {{{_}}};
+  Board board = board_create();
   CellPoint point = computer_move(board);
 
-  ck_assert_int_eq(center, point.x);
-  ck_assert_int_eq(center, point.y);
+  ck_assert_int_eq(point.x, center);
+  ck_assert_int_eq(point.y, center);
 }
 END_TEST
 
@@ -22,8 +22,8 @@ START_TEST(test_computer_move_should_return_at_last_a_random_empty_point) {
 
   CellPoint point = computer_move(board);
 
-  ck_assert_int_eq(0, point.x);
-  ck_assert_int_eq(0, point.y);
+  ck_assert_int_eq(point.x, 0);
+  ck_assert_int_eq(point.y, 0);
 }
 END_TEST
 
