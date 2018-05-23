@@ -2,16 +2,8 @@
 #define BOARD_H
 
 #define BOARD_SIZE 3
-#define CELL_IS_EMPTY(cell) cell == _
 
-typedef enum {
-  _, X, O
-} Cell;
-
-typedef struct {
-  int x;
-  int y;
-} CellPoint;
+#include "cell.h"
 
 typedef struct {
   Cell cells[BOARD_SIZE][BOARD_SIZE];

@@ -16,7 +16,7 @@ static int board_available_cells_count(Board *board) {
 
   for (i = 0; i < BOARD_SIZE; i++) {
     for (j = 0; j < BOARD_SIZE; j++) {
-      if (CELL_IS_EMPTY(board->cells[i][j])) count++;
+      if (cell_is_empty(board->cells[i][j])) count++;
     }
   }
   return count;
@@ -33,7 +33,7 @@ BoardSubset board_available_cells(Board *board) {
 
   for (i = 0; i < BOARD_SIZE; i++) {
     for (j = 0; j < BOARD_SIZE; j++) {
-      if (CELL_IS_EMPTY(board->cells[i][j])) {
+      if (cell_is_empty(board->cells[i][j])) {
         subset.points[aux] = (CellPoint){i, j};
         aux++;
       }
@@ -47,7 +47,7 @@ int board_is_full(Board *board) {
 
   for (i = 0; i < BOARD_SIZE; i++) {
     for (j = 0; j < BOARD_SIZE; j++) {
-      if (CELL_IS_EMPTY(board->cells[i][j])) return 0;
+      if (cell_is_empty(board->cells[i][j])) return 0;
     }
   }
   return 1;

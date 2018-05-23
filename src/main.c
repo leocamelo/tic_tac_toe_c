@@ -1,13 +1,8 @@
 #include <stdlib.h>
-#include <stdio.h>
-#include "board.h"
+#include "game.h"
 
 int main() {
-  Board board = board_create();
-  BoardSubset available_cells = board_available_cells(&board);
-  CellPoint point = available_cells.points[0];
-
-  printf("(%d, %d)\n", point.x, point.y);
-  board_subset_free(&available_cells);
+  Game game = game_create();
+  game_run(&game);
   return 0;
 }

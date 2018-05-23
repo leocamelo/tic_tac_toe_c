@@ -7,7 +7,7 @@ START_TEST(test_board_empty_cell_at_should_set_cell_to_nil) {
   ck_assert(board.cells[0][0] == X);
 
   board_empty_cell_at(&board, &(CellPoint){0, 0});
-  ck_assert(CELL_IS_EMPTY(board.cells[0][0]));
+  ck_assert(cell_is_empty(board.cells[0][0]));
 }
 END_TEST
 
