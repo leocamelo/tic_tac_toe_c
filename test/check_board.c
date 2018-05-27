@@ -2,9 +2,21 @@
 #include "check_board.h"
 #include "../src/board.h"
 
+START_TEST(test_board_create_should_returns_an_empty_board) {
+  Board board = board_create();
+  int i, j;
+
+  for (i = 0; i < BOARD_SIZE; i++) {
+    for (j = 0; j < BOARD_SIZE; j++) {
+      ck_assert(cell_is_empty(board.cells[i][j]));
+    }
+  }
+}
+END_TEST
+
 START_TEST(test_board_empty_cell_at_should_set_cell_to_nil) {
   Board board = {{{X}}};
-  ck_assert(board.cells[0][0] == X);
+  ck_assert(!cell_is_empty(board.cells[0][0]));
 
   board_empty_cell_at(&board, &(CellPoint){0, 0});
   ck_assert(cell_is_empty(board.cells[0][0]));
@@ -124,6 +136,8 @@ END_TEST
 
 TCase *board_tcase() {
   TCase *tcase = tcase_create("board");
+
+  tcase_add_test(tcase, test_board_create_should_returns_an_empty_board);
 
   tcase_add_test(tcase, test_board_empty_cell_at_should_set_cell_to_nil);
 
