@@ -3,6 +3,6 @@
 
 #include "board.h"
 
-CellPoint human_move(Board board);
+CellPoint human_move(Board *board);
 
 #endif
