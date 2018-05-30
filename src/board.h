@@ -26,4 +26,6 @@ int board_is_full(Board *board);
 
 int board_has_match(Board *board);
 
+char *board_cells_grid(Board *board);
+
 #endif

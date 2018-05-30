@@ -1,4 +1,5 @@
 #include <stdlib.h>
+#include <string.h>
 #include "board.h"
 
 #define IS_MATCH(count) abs(count) == BOARD_SIZE
@@ -109,4 +110,33 @@ int board_has_match(Board *board) {
          board_has_rl_diagonal_match(board) ||
          board_has_row_match(board) ||
          board_has_col_match(board);
+}
+
+char *board_cells_grid(Board *board) {
+  int i, j;
+
+  char *grid = malloc(sizeof(char) * (
+    BOARD_SIZE * 2 +
+    BOARD_SIZE * (BOARD_SIZE * 4 - 2) +
+    (BOARD_SIZE - 1) * (BOARD_SIZE * 4 - 1)
+  ));
+
+  strcat(grid, "\n");
+  for (i = 0; i < BOARD_SIZE; i++) {
+    if (i != 0) {
+      strcat(grid, "\n");
+      for (j = 0; j < BOARD_SIZE; j++) {
+        if (j != 0) strcat(grid, "+");
+        strcat(grid, "===");
+      }
+      strcat(grid, "\n");
+    }
+    strcat(grid, " ");
+    for (j = 0; j < BOARD_SIZE; j++) {
+      if (j != 0) strcat(grid, " | ");
+      strcat(grid, cell_to_string(board->cells[i][j]));
+    }
+  };
+  strcat(grid, "\n");
+  return grid;
 }

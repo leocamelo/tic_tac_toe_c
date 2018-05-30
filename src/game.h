@@ -1,6 +1,8 @@
 #ifndef GAME_H
 #define GAME_H
 
+#define VERSION "0.1.0"
+
 #include "board.h"
 #include "turns_manager.h"
 

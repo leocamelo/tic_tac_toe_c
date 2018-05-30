@@ -1,6 +1,7 @@
 #include <stdlib.h>
 #include "game.h"
 #include "player.h"
+#include "io.h"
 
 Game game_create() {
   Player player1 = {Human, X};
@@ -27,5 +28,7 @@ static void game_perform_loop(Game *game) {
 }
 
 void game_run(Game *game) {
+  io_print("Tic-Tac-Toe! v"VERSION);
   game_perform_loop(game);
+  io_print("Game Over");
 }
