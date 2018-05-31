@@ -147,7 +147,7 @@ START_TEST(test_board_cells_grid_should_return_all_cells_as_string) {
     "\n O | 5 | 6"
     "\n===+===+==="
     "\n 7 | 8 | 9"
-    "\n\n"
+    "\n"
   );
 }
 END_TEST
