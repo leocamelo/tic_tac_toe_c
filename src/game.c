@@ -28,7 +28,7 @@ static void game_perform_loop(Game *game) {
 }
 
 void game_run(Game *game) {
-  io_print("Tic-Tac-Toe! v"VERSION);
+  io_print("Tic-Tac-Toe! v" VERSION);
   game_perform_loop(game);
   io_print("Game Over");
 }

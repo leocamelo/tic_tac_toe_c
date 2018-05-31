@@ -134,6 +134,24 @@ START_TEST(test_board_has_match_when_have_in_vertical_should_return_true) {
 }
 END_TEST
 
+START_TEST(test_board_cells_grid_should_return_all_cells_as_string) {
+  Board board = {{
+    {_, X, _},
+    {O, _, _},
+    {_, _, _}
+  }};
+
+  ck_assert_str_eq(board_cells_grid(&board),
+    "\n 1 | X | 3"
+    "\n===+===+==="
+    "\n O | 5 | 6"
+    "\n===+===+==="
+    "\n 7 | 8 | 9"
+    "\n\n"
+  );
+}
+END_TEST
+
 TCase *board_tcase() {
   TCase *tcase = tcase_create("board");
 
@@ -150,6 +168,8 @@ TCase *board_tcase() {
   tcase_add_test(tcase, test_board_has_match_when_have_in_diagonal_rl_should_return_true);
   tcase_add_test(tcase, test_board_has_match_when_have_in_horizontal_should_return_true);
   tcase_add_test(tcase, test_board_has_match_when_have_in_vertical_should_return_true);
+
+  tcase_add_test(tcase, test_board_cells_grid_should_return_all_cells_as_string);
 
   return tcase;
 }

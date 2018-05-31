@@ -116,7 +116,7 @@ char *board_cells_grid(Board *board) {
   int i, j;
 
   char *grid = malloc(sizeof(char) * (
-    BOARD_SIZE * 2 +
+    1 + BOARD_SIZE * 2 +
     BOARD_SIZE * (BOARD_SIZE * 4 - 2) +
     (BOARD_SIZE - 1) * (BOARD_SIZE * 4 - 1)
   ));
