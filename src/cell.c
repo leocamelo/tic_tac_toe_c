@@ -7,9 +7,12 @@ int cell_is_empty(Cell cell) {
 
 char *cell_to_string(Cell cell) {
   switch (cell) {
-    case X: return "X";
-    case O: return "O";
-    default: return "_";
+    case X:
+      return "X";
+    case O:
+      return "O";
+    default:
+      return "_";
   }
 }
 

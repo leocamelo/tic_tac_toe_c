@@ -101,20 +101,25 @@ int board_has_match(Board *board) {
          board_has_col_match(board);
 }
 
-static void board_cells_grid_strcat_row_separator(char *grid) {
+static char *board_cells_grid_row_separator() {
   int i;
 
-  strcat(grid, "\n");
+  char *separator = malloc(sizeof(char) * (BOARD_SIZE * 4 + 2));
+
+  strcpy(separator, "\n");
   for (i = 0; i < BOARD_SIZE; i++) {
-    if (i != 0) strcat(grid, "+");
-    strcat(grid, "===");
+    if (i) strcat(separator, "+");
+    strcat(separator, "===");
   }
-  strcat(grid, "\n");
+  strcat(separator, "\n");
+  return separator;
 }
 
 char *board_cells_grid(Board *board) {
   int i, j;
+
   char fallback_cell = '1';
+  char *separator = board_cells_grid_row_separator();
 
   char *grid = malloc(sizeof(char) * (
     8 * pow(BOARD_SIZE, 2) - 5 * BOARD_SIZE + 2
@@ -122,11 +127,10 @@ char *board_cells_grid(Board *board) {
 
   strcpy(grid, "\n");
   for (i = 0; i < BOARD_SIZE; i++) {
-    if (i != 0) board_cells_grid_strcat_row_separator(grid);
-    strcat(grid, " ");
+    if (i) strcat(grid, separator);
 
     for (j = 0; j < BOARD_SIZE; j++) {
-      if (j != 0) strcat(grid, " | ");
+      strcat(grid, j ? " | " : " ");
 
       if (cell_is_empty(board->cells[i][j])) {
         strcat(grid, (char[2]){fallback_cell, '\0'});
@@ -137,5 +141,6 @@ char *board_cells_grid(Board *board) {
     }
   }
   strcat(grid, "\n");
+  free(separator);
   return grid;
 }
