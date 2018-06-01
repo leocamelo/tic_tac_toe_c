@@ -120,7 +120,7 @@ char *board_cells_grid(Board *board) {
     8 * pow(BOARD_SIZE, 2) - 5 * BOARD_SIZE + 2
   ));
 
-  strcat(grid, "\n");
+  strcpy(grid, "\n");
   for (i = 0; i < BOARD_SIZE; i++) {
     if (i != 0) board_cells_grid_strcat_row_separator(grid);
     strcat(grid, " ");

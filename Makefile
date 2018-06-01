@@ -1,5 +1,5 @@
 CC=gcc
-CFLAGS=-Wall -Wextra -O3
+CFLAGS=-ansi -Wall -Wextra -O3
 
 MAIN=src/main.c
 SOURCES=$(filter-out $(MAIN), $(wildcard src/*.c))
