@@ -15,14 +15,15 @@ static int game_is_over(Game *game) {
 
 static void game_perform_loop(Game *game) {
   while (1) {
-    if (game_is_over(game)) break;
-
     Player current_player = game->turns_manager.current_player;
     CellPoint point = player_move(&current_player, &game->board);
 
     if (cell_point_is_null(&point)) break;
 
     game->board.cells[point.x][point.y] = current_player.marker;
+
+    if (game_is_over(game)) break;
+
     turns_manager_swap_current_player(&game->turns_manager);
   }
 }
