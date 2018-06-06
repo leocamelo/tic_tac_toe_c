@@ -36,17 +36,14 @@ CellPoint human_move(Board *board) {
   free(grid);
 
   printf("Enter [1-%d] to mark or 0 to quit: ", limit);
-  scanf("%d", &input);
+  if (!scanf("%d", &input) || !input) return cell_point_null();
 
-  if (!input) return cell_point_null();
-
-  if (input <= limit) {
+  if (input > 0 && input <= limit) {
     CellPoint point = human_cell_point_by_index(input);
 
     if (!cell_point_is_null(&point) && human_cell_point_is_available(board, &point)) {
       return point;
     }
   }
-
   return human_move(board);
 }
