@@ -7,19 +7,19 @@ static int computer_check_board_match(Board board, CellPoint point, Cell marker)
   return board_has_match(&board);
 }
 
-static CellPoint computer_to_over_move(Board *board, BoardSubset *available_cells, Cell marker) {
+static CellPoint computer_to_over_move(Board *board, BoardSubset *subset, Cell marker) {
   int i;
 
-  for (i = 0; i < available_cells->size; i++) {
-    if (computer_check_board_match(*board, available_cells->points[i], marker)) {
-      return available_cells->points[i];
+  for (i = 0; i < subset->size; i++) {
+    if (computer_check_board_match(*board, subset->points[i], marker)) {
+      return subset->points[i];
     }
   }
 
   marker = (marker == X ? O : X);
-  for (i = 0; i < available_cells->size; i++) {
-    if (computer_check_board_match(*board, available_cells->points[i], marker)) {
-      return available_cells->points[i];
+  for (i = 0; i < subset->size; i++) {
+    if (computer_check_board_match(*board, subset->points[i], marker)) {
+      return subset->points[i];
     }
   }
 
@@ -35,19 +35,19 @@ static CellPoint computer_center_move(Board *board) {
   return cell_point_null();
 }
 
-static CellPoint computer_random_move(BoardSubset *available_cells) {
+static CellPoint computer_random_move(BoardSubset *subset) {
   srand(time(NULL));
-  return available_cells->points[rand() % available_cells->size];
+  return subset->points[rand() % subset->size];
 }
 
 CellPoint computer_move(Board *board, Cell marker) {
-  BoardSubset available_cells = board_available_cells(board);
-  if (available_cells.size == 0) return cell_point_null();
+  BoardSubset subset = board_available_cells(board);
+  if (!subset.size) return cell_point_null();
 
-  CellPoint move = computer_to_over_move(board, &available_cells, marker);
+  CellPoint move = computer_to_over_move(board, &subset, marker);
   if (cell_point_is_null(&move)) move = computer_center_move(board);
-  if (cell_point_is_null(&move)) move = computer_random_move(&available_cells);
+  if (cell_point_is_null(&move)) move = computer_random_move(&subset);
 
-  board_subset_free(&available_cells);
+  board_subset_free(&subset);
   return move;
 }

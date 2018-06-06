@@ -1,7 +1,7 @@
 #include <stdlib.h>
+#include <stdio.h>
 #include "game.h"
 #include "player.h"
-#include "io.h"
 
 Game game_create() {
   Player player1 = {Human, X};
@@ -29,7 +29,7 @@ static void game_perform_loop(Game *game) {
 }
 
 void game_run(Game *game) {
-  io_print("Tic-Tac-Toe! v" VERSION);
+  printf("Tic-Tac-Toe! v%s\n", VERSION);
   game_perform_loop(game);
-  io_print("Game Over");
+  printf("Game Over\n");
 }

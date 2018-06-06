@@ -2,6 +2,7 @@
 #include <check.h>
 #include "check_cell.h"
 #include "check_board.h"
+#include "check_human.h"
 #include "check_computer.h"
 #include "check_turns_manager.h"
 
@@ -10,6 +11,7 @@ static Suite *tic_tac_toe_suite() {
 
   suite_add_tcase(suite, cell_tcase());
   suite_add_tcase(suite, board_tcase());
+  suite_add_tcase(suite, human_tcase());
   suite_add_tcase(suite, computer_tcase());
   suite_add_tcase(suite, turns_manager_tcase());
 
