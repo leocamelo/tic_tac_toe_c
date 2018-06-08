@@ -1,5 +1,4 @@
 #include <stdlib.h>
-#include <string.h>
 #include <math.h>
 #include "board.h"
 
@@ -7,10 +6,6 @@
 
 Board board_create() {
   return (Board){{{_}}};
-}
-
-void board_empty_cell_at(Board *board, CellPoint *point) {
-  board->cells[point->x][point->y] = _;
 }
 
 void board_subset_free(BoardSubset *subset) {
@@ -99,48 +94,4 @@ int board_has_match(Board *board) {
          board_has_rl_diagonal_match(board) ||
          board_has_row_match(board) ||
          board_has_col_match(board);
-}
-
-static char *board_cells_grid_row_separator() {
-  int i;
-
-  char *separator = malloc(sizeof(char) * (BOARD_SIZE * 4 + 2));
-
-  strcpy(separator, "\n");
-  for (i = 0; i < BOARD_SIZE; i++) {
-    if (i) strcat(separator, "+");
-    strcat(separator, "===");
-  }
-  strcat(separator, "\n");
-  return separator;
-}
-
-char *board_cells_grid(Board *board) {
-  int i, j;
-
-  char fallback_cell = '1';
-  char *separator = board_cells_grid_row_separator();
-
-  char *grid = malloc(sizeof(char) * (
-    8 * pow(BOARD_SIZE, 2) - 5 * BOARD_SIZE + 2
-  ));
-
-  strcpy(grid, "\n");
-  for (i = 0; i < BOARD_SIZE; i++) {
-    if (i) strcat(grid, separator);
-
-    for (j = 0; j < BOARD_SIZE; j++) {
-      strcat(grid, j ? " | " : " ");
-
-      if (cell_is_empty(board->cells[i][j])) {
-        strcat(grid, (char[2]){fallback_cell, '\0'});
-      } else {
-        strcat(grid, cell_to_string(board->cells[i][j]));
-      }
-      fallback_cell++;
-    }
-  }
-  strcat(grid, "\n");
-  free(separator);
-  return grid;
 }

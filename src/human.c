@@ -1,6 +1,7 @@
 #include <stdlib.h>
 #include <stdio.h>
 #include <math.h>
+#include "grid.h"
 #include "human.h"
 
 CellPoint human_cell_point_by_index(int index) {
@@ -17,7 +18,7 @@ CellPoint human_cell_point_by_index(int index) {
 CellPoint human_move(Board *board) {
   int input, limit = pow(BOARD_SIZE, 2);
 
-  char *grid = board_cells_grid(board);
+  char *grid = grid_from_board(board);
   printf("%s\n", grid);
   free(grid);
 

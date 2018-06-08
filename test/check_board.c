@@ -14,15 +14,6 @@ START_TEST(test_board_create_should_returns_an_empty_board) {
 }
 END_TEST
 
-START_TEST(test_board_empty_cell_at_should_set_cell_to_nil) {
-  Board board = {{{X}}};
-  ck_assert(!cell_is_empty(board.cells[0][0]));
-
-  board_empty_cell_at(&board, &(CellPoint){0, 0});
-  ck_assert(cell_is_empty(board.cells[0][0]));
-}
-END_TEST
-
 START_TEST(test_board_available_cells_should_return_all_empty_cells) {
   Board board = {{
     {_, X, X},
@@ -134,30 +125,10 @@ START_TEST(test_board_has_match_when_have_in_vertical_should_return_true) {
 }
 END_TEST
 
-START_TEST(test_board_cells_grid_should_return_all_cells_as_string) {
-  Board board = {{
-    {_, X, _},
-    {O, _, _},
-    {_, _, _}
-  }};
-
-  ck_assert_str_eq(board_cells_grid(&board),
-    "\n 1 | X | 3"
-    "\n===+===+==="
-    "\n O | 5 | 6"
-    "\n===+===+==="
-    "\n 7 | 8 | 9"
-    "\n"
-  );
-}
-END_TEST
-
 TCase *board_tcase() {
   TCase *tcase = tcase_create("board");
 
   tcase_add_test(tcase, test_board_create_should_returns_an_empty_board);
-
-  tcase_add_test(tcase, test_board_empty_cell_at_should_set_cell_to_nil);
 
   tcase_add_test(tcase, test_board_available_cells_should_return_all_empty_cells);
   tcase_add_test(tcase, test_board_is_full_when_is_not_fully_marked_should_return_false);
@@ -168,8 +139,6 @@ TCase *board_tcase() {
   tcase_add_test(tcase, test_board_has_match_when_have_in_diagonal_rl_should_return_true);
   tcase_add_test(tcase, test_board_has_match_when_have_in_horizontal_should_return_true);
   tcase_add_test(tcase, test_board_has_match_when_have_in_vertical_should_return_true);
-
-  tcase_add_test(tcase, test_board_cells_grid_should_return_all_cells_as_string);
 
   return tcase;
 }

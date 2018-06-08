@@ -16,8 +16,6 @@ typedef struct {
 
 Board board_create();
 
-void board_empty_cell_at(Board *board, CellPoint *point);
-
 void board_subset_free(BoardSubset *subset);
 
 BoardSubset board_available_cells(Board *board);
@@ -25,7 +23,5 @@ BoardSubset board_available_cells(Board *board);
 int board_is_full(Board *board);
 
 int board_has_match(Board *board);
-
-char *board_cells_grid(Board *board);
 
 #endif
