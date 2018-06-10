@@ -1,6 +1,7 @@
 #include <stdlib.h>
 #include <stdio.h>
 #include "game.h"
+#include "grid.h"
 #include "player.h"
 
 Game game_create() {
@@ -29,7 +30,7 @@ static void game_perform_loop(Game *game) {
 }
 
 void game_run(Game *game) {
-  printf("Tic-Tac-Toe! v%s\n", VERSION);
+  printf("Tic-Tac-Toe! (v%s)\n", VERSION);
   game_perform_loop(game);
-  printf("Game Over\n");
+  printf("%s\nGame Over\n", grid_from_board(&game->board));
 }

@@ -5,6 +5,7 @@
 #include "check_grid.h"
 #include "check_human.h"
 #include "check_computer.h"
+#include "check_player.h"
 #include "check_turns_manager.h"
 
 static Suite *tic_tac_toe_suite() {
@@ -15,6 +16,7 @@ static Suite *tic_tac_toe_suite() {
   suite_add_tcase(suite, grid_tcase());
   suite_add_tcase(suite, human_tcase());
   suite_add_tcase(suite, computer_tcase());
+  suite_add_tcase(suite, player_tcase());
   suite_add_tcase(suite, turns_manager_tcase());
 
   return suite;

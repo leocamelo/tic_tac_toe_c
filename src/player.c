@@ -6,10 +6,8 @@
 CellPoint player_move(Player *player, Board *board) {
   switch (player->kind) {
     case Human:
-      return human_move(board);
+      return HUMAN_MOVE_FN(board);
     case Computer:
-      return computer_move(board, player->marker);
-    default:
-      return cell_point_null();
+      return COMPUTER_MOVE_FN(board, player->marker);
   }
 }

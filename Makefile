@@ -22,7 +22,7 @@ run: $(MAIN)
 
 test: $(TEST_MAIN)
 	make $(TARGET)
-	$(CC) $(SOURCES) $(TEST_SOURCES) $(TEST_MAIN) $(CFLAGS) $(TEST_LINKS) -o bin/$(TEST_TARGET)
+	$(CC) $(SOURCES) $(TEST_SOURCES) $(TEST_MAIN) $(CFLAGS) -D"TEST_ENV" $(TEST_LINKS) -o bin/$(TEST_TARGET)
 	./bin/$(TEST_TARGET)
 
 clean:
