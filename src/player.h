@@ -4,18 +4,13 @@
 #include "board.h"
 
 #ifdef TEST_ENV
-
 CellPoint mocked_human_move(Board *board);
 CellPoint mocked_computer_move(Board *board, Cell marker);
-
 #define HUMAN_MOVE_FN mocked_human_move
 #define COMPUTER_MOVE_FN mocked_computer_move
-
 #else
-
 #define HUMAN_MOVE_FN human_move
 #define COMPUTER_MOVE_FN computer_move
-
 #endif
 
 typedef enum {

@@ -19,11 +19,11 @@ CellPoint human_move(Board *board) {
   int input, limit = pow(BOARD_SIZE, 2);
 
   char *grid = grid_from_board(board);
-  printf("%s\n", grid);
+  PRINTF_FN("%s\n", grid);
   free(grid);
 
-  printf("Enter [1-%d] to mark or 0 to quit: ", limit);
-  if (!scanf("%d", &input) || !input) return cell_point_null();
+  PRINTF_FN("Enter [1-%d] to mark or 0 to quit: ", limit);
+  if (!SCANF_FN("%d", &input) || !input) return cell_point_null();
 
   if (input > 0 && input <= limit) {
     CellPoint point = human_cell_point_by_index(input);

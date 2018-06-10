@@ -2,6 +2,16 @@
 #include "check_human.h"
 #include "../src/human.h"
 
+void mocked_printf(const char *format, ...) {
+  (void)(format);
+}
+
+int mocked_scanf(const char *format, int *pointer) {
+  (void)(format);
+  *pointer = 5;
+  return 1;
+}
+
 START_TEST(test_human_cell_point_from_input_should_returns_a_cell_point_by_index) {
   CellPoint point_by1 = human_cell_point_by_index(1);
   CellPoint point_by5 = human_cell_point_by_index(5);
@@ -18,10 +28,21 @@ START_TEST(test_human_cell_point_from_input_should_returns_a_cell_point_by_index
 }
 END_TEST
 
+START_TEST(test_human_move_should_ask_user_and_returns_his_respective_point) {
+  Board board = board_create();
+  CellPoint point = human_move(&board);
+
+  ck_assert_int_eq(point.x, 1);
+  ck_assert_int_eq(point.y, 1);
+}
+END_TEST
+
 TCase *human_tcase() {
   TCase *tcase = tcase_create("human");
 
   tcase_add_test(tcase, test_human_cell_point_from_input_should_returns_a_cell_point_by_index);
+
+  tcase_add_test(tcase, test_human_move_should_ask_user_and_returns_his_respective_point);
 
   return tcase;
 }
