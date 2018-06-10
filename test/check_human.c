@@ -2,16 +2,6 @@
 #include "check_human.h"
 #include "../src/human.h"
 
-void mocked_printf(const char *format, ...) {
-  (void)(format);
-}
-
-int mocked_scanf(const char *format, int *pointer) {
-  (void)(format);
-  *pointer = 5;
-  return 1;
-}
-
 START_TEST(test_human_cell_point_from_input_should_returns_a_cell_point_by_index) {
   CellPoint point_by1 = human_cell_point_by_index(1);
   CellPoint point_by5 = human_cell_point_by_index(5);

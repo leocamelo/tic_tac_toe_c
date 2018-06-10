@@ -15,9 +15,12 @@ static int game_is_over(Game *game) {
 }
 
 static void game_perform_loop(Game *game) {
+  Player current_player;
+  CellPoint point;
+
   while (1) {
-    Player current_player = game->turns_manager.current_player;
-    CellPoint point = player_move(&current_player, &game->board);
+    current_player = game->turns_manager.current_player;
+    point = PLAYER_MOVE_FN(&current_player, &game->board);
 
     if (cell_point_is_null(&point)) break;
 
@@ -30,7 +33,7 @@ static void game_perform_loop(Game *game) {
 }
 
 void game_run(Game *game) {
-  printf("Tic-Tac-Toe! (v%s)\n", VERSION);
+  PRINTF_FN("Tic-Tac-Toe! (v%s)\n", VERSION);
   game_perform_loop(game);
-  printf("%s\nGame Over\n", grid_from_board(&game->board));
+  PRINTF_FN("%s\nGame Over\n", grid_from_board(&game->board));
 }

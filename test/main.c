@@ -7,6 +7,7 @@
 #include "check_computer.h"
 #include "check_player.h"
 #include "check_turns_manager.h"
+#include "check_game.h"
 
 static Suite *tic_tac_toe_suite() {
   Suite *suite = suite_create("tic_tac_toe");
@@ -18,6 +19,7 @@ static Suite *tic_tac_toe_suite() {
   suite_add_tcase(suite, computer_tcase());
   suite_add_tcase(suite, player_tcase());
   suite_add_tcase(suite, turns_manager_tcase());
+  suite_add_tcase(suite, game_tcase());
 
   return suite;
 }
@@ -33,4 +35,14 @@ int main() {
   srunner_free(srunner);
 
   return ntests_failed == 0 ? EXIT_SUCCESS : EXIT_FAILURE;
+}
+
+void mocked_printf(const char *format, ...) {
+  (void)(format);
+}
+
+int mocked_scanf(const char *format, int *pointer) {
+  (void)(format);
+  *pointer = 5;
+  return 1;
 }
