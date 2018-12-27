@@ -4,7 +4,7 @@
 
 #define IS_MATCH(count) abs(count) == BOARD_SIZE
 
-Board board_create() {
+Board board_create(void) {
   return (Board){{{_}}};
 }
 

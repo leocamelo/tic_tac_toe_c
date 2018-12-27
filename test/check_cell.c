@@ -34,7 +34,7 @@ START_TEST(test_cell_point_null_returns_an_out_of_board_point) {
 }
 END_TEST
 
-TCase *cell_tcase() {
+TCase *cell_tcase(void) {
   TCase *tcase = tcase_create("cell");
 
   tcase_add_test(tcase, test_cell_is_empty_returns_true_for_empty_cell);

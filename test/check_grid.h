@@ -3,6 +3,6 @@
 
 #include <check.h>
 
-TCase *grid_tcase();
+TCase *grid_tcase(void);
 
 #endif

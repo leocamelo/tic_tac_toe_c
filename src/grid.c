@@ -3,7 +3,7 @@
 #include <math.h>
 #include "grid.h"
 
-static char *grid_row_separator() {
+static char *grid_row_separator(void) {
   int i;
 
   char *separator = malloc(sizeof(char) * (BOARD_SIZE * 4 + 2));

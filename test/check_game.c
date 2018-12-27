@@ -37,7 +37,7 @@ START_TEST(test_game_run_should_loops_until_game_is_over) {
 }
 END_TEST
 
-TCase *game_tcase() {
+TCase *game_tcase(void) {
   TCase *tcase = tcase_create("game");
 
   tcase_add_test(tcase, test_game_create_should_returns_an_initial_game);

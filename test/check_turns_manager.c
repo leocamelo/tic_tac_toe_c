@@ -23,7 +23,7 @@ START_TEST(test_turns_manager_swap_current_user_should_swaps_it) {
 }
 END_TEST
 
-TCase *turns_manager_tcase() {
+TCase *turns_manager_tcase(void) {
   TCase *tcase = tcase_create("turns_manager");
 
   tcase_add_test(tcase, test_turns_manager_swap_current_user_should_swaps_it);

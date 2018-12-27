@@ -26,7 +26,7 @@ typedef struct {
   TurnsManager turns_manager;
 } Game;
 
-Game game_create();
+Game game_create(void);
 
 void game_run(Game *game);
 

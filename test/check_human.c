@@ -27,7 +27,7 @@ START_TEST(test_human_move_should_ask_user_and_returns_his_respective_point) {
 }
 END_TEST
 
-TCase *human_tcase() {
+TCase *human_tcase(void) {
   TCase *tcase = tcase_create("human");
 
   tcase_add_test(tcase, test_human_cell_point_from_input_should_returns_a_cell_point_by_index);

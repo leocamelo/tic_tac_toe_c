@@ -3,6 +3,6 @@
 
 #include <check.h>
 
-TCase *cell_tcase();
+TCase *cell_tcase(void);
 
 #endif

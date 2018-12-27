@@ -20,6 +20,6 @@ int cell_point_is_null(CellPoint *point) {
   return point->x == -1 || point->y == -1;
 }
 
-CellPoint cell_point_null() {
+CellPoint cell_point_null(void) {
   return (CellPoint){-1, -1};
 }

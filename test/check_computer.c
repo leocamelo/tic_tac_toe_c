@@ -55,7 +55,7 @@ START_TEST(test_computer_move_should_return_at_last_a_random_empty_point) {
 }
 END_TEST
 
-TCase *computer_tcase() {
+TCase *computer_tcase(void) {
   TCase *tcase = tcase_create("computer");
 
   tcase_add_test(tcase, test_computer_move_should_return_the_point_for_win);

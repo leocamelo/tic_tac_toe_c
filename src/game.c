@@ -4,7 +4,7 @@
 #include "grid.h"
 #include "player.h"
 
-Game game_create() {
+Game game_create(void) {
   Player player1 = {Human, X};
   Player player2 = {Computer, O};
   return (Game){board_create(), (TurnsManager){player1, player2}};

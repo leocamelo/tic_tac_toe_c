@@ -3,6 +3,6 @@
 
 #include <check.h>
 
-TCase *human_tcase();
+TCase *human_tcase(void);
 
 #endif

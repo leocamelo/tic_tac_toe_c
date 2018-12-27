@@ -9,7 +9,10 @@
 #include "check_turns_manager.h"
 #include "check_game.h"
 
-static Suite *tic_tac_toe_suite() {
+void mocked_printf(const char *format, ...);
+int mocked_scanf(const char *format, int *pointer);
+
+static Suite *tic_tac_toe_suite(void) {
   Suite *suite = suite_create("tic_tac_toe");
 
   suite_add_tcase(suite, cell_tcase());
@@ -24,7 +27,7 @@ static Suite *tic_tac_toe_suite() {
   return suite;
 }
 
-int main() {
+int main(void) {
   int ntests_failed;
 
   Suite *suite = tic_tac_toe_suite();

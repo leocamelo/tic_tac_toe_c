@@ -125,7 +125,7 @@ START_TEST(test_board_has_match_when_have_in_vertical_should_return_true) {
 }
 END_TEST
 
-TCase *board_tcase() {
+TCase *board_tcase(void) {
   TCase *tcase = tcase_create("board");
 
   tcase_add_test(tcase, test_board_create_should_returns_an_empty_board);

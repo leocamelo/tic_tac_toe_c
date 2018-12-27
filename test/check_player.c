@@ -35,7 +35,7 @@ START_TEST(test_player_move_should_call_computer_move_for_computer_players){
 }
 END_TEST
 
-TCase *player_tcase() {
+TCase *player_tcase(void) {
   TCase *tcase = tcase_create("player");
 
   tcase_add_test(tcase, test_player_move_should_call_human_move_for_human_players);

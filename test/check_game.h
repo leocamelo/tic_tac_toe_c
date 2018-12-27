@@ -3,6 +3,6 @@
 
 #include <check.h>
 
-TCase *game_tcase();
+TCase *game_tcase(void);
 
 #endif

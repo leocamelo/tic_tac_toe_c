@@ -20,7 +20,7 @@ START_TEST(test_grid_from_board_should_return_all_board_cells_as_string) {
 }
 END_TEST
 
-TCase *grid_tcase() {
+TCase *grid_tcase(void) {
   TCase *tcase = tcase_create("grid");
 
   tcase_add_test(tcase, test_grid_from_board_should_return_all_board_cells_as_string);
