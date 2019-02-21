@@ -4,8 +4,17 @@
 
 #define IS_MATCH(count) abs(count) == BOARD_SIZE
 
-Board board_create(void) {
-  return (Board){{{_}}};
+Board *board_create(void) {
+  Board *board = malloc(sizeof(Board));
+  int i, j;
+
+  for (i = 0; i < BOARD_SIZE; i++) {
+    for (j = 0; j < BOARD_SIZE; j++) {
+      board->cells[i][j] = _;
+    }
+  }
+
+  return board;
 }
 
 void board_subset_free(BoardSubset *subset) {

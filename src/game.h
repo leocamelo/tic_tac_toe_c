@@ -22,11 +22,11 @@ CellPoint mocked_player_move(Player *player, Board *board);
 #endif
 
 typedef struct {
-  Board board;
-  TurnsManager turns_manager;
+  Board *board;
+  TurnsManager *turns_manager;
 } Game;
 
-Game game_create(void);
+Game *game_create(void);
 
 void game_run(Game *game);
 

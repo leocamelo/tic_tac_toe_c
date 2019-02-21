@@ -14,7 +14,7 @@ typedef struct {
   CellPoint *points;
 } BoardSubset;
 
-Board board_create(void);
+Board *board_create(void);
 
 void board_subset_free(BoardSubset *subset);
 

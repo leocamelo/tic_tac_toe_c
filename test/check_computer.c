@@ -33,8 +33,8 @@ END_TEST
 START_TEST(test_computer_move_should_return_the_center_point_when_it_cans) {
   int center = BOARD_SIZE / 2;
 
-  Board board = board_create();
-  CellPoint point = computer_move(&board, X);
+  Board *board = board_create();
+  CellPoint point = computer_move(board, X);
 
   ck_assert_int_eq(point.x, center);
   ck_assert_int_eq(point.y, center);

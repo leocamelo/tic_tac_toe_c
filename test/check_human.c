@@ -19,8 +19,8 @@ START_TEST(test_human_cell_point_from_input_should_returns_a_cell_point_by_index
 END_TEST
 
 START_TEST(test_human_move_should_ask_user_and_returns_his_respective_point) {
-  Board board = board_create();
-  CellPoint point = human_move(&board);
+  Board *board = board_create();
+  CellPoint point = human_move(board);
 
   ck_assert_int_eq(point.x, 1);
   ck_assert_int_eq(point.y, 1);

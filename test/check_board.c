@@ -3,12 +3,12 @@
 #include "../src/board.h"
 
 START_TEST(test_board_create_should_returns_an_empty_board) {
-  Board board = board_create();
+  Board *board = board_create();
   int i, j;
 
   for (i = 0; i < BOARD_SIZE; i++) {
     for (j = 0; j < BOARD_SIZE; j++) {
-      ck_assert(cell_is_empty(board.cells[i][j]));
+      ck_assert(cell_is_empty(board->cells[i][j]));
     }
   }
 }
@@ -57,8 +57,8 @@ START_TEST(test_board_is_full_when_is_fully_marked_should_return_true) {
 END_TEST
 
 START_TEST(test_board_has_match_when_doenst_have_should_return_false) {
-  Board board = board_create();
-  ck_assert(!board_has_match(&board));
+  Board *board = board_create();
+  ck_assert(!board_has_match(board));
 }
 END_TEST
 
