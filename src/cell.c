@@ -24,3 +24,7 @@ CellPoint *cell_point_create(const int x, const int y) {
 
   return point;
 }
+
+CellPoint *cell_point_copy(CellPoint *point) {
+  return cell_point_create(point->x, point->y);
+}

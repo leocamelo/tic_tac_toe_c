@@ -28,7 +28,7 @@ CellPoint *human_move(Board *board) {
   if (input > 0 && input <= limit) {
     CellPoint *point = human_cell_point_by_index(input);
 
-    if (point != NULL && cell_is_empty(board->cells[point->x][point->y])) {
+    if (point && cell_is_empty(board->cells[point->x][point->y])) {
       return point;
     }
   }

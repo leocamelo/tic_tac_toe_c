@@ -28,7 +28,7 @@ static void game_perform_loop(Game *game) {
     current_player = game->turns_manager->current_player;
     point = PLAYER_MOVE_FN(&current_player, game->board);
 
-    if (point == NULL) break;
+    if (!point) break;
 
     game->board->cells[point->x][point->y] = current_player.marker;
 

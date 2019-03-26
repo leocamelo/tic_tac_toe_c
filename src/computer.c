@@ -12,14 +12,14 @@ static CellPoint *computer_to_over_move(Board *board, BoardSubset *subset, Cell 
 
   for (i = 0; i < subset->size; i++) {
     if (computer_check_board_match(*board, subset->points[i], marker)) {
-      return subset->points[i];
+      return cell_point_copy(subset->points[i]);
     }
   }
 
   marker = (marker == X ? O : X);
   for (i = 0; i < subset->size; i++) {
     if (computer_check_board_match(*board, subset->points[i], marker)) {
-      return subset->points[i];
+      return cell_point_copy(subset->points[i]);
     }
   }
 
@@ -37,7 +37,7 @@ static CellPoint *computer_center_move(Board *board) {
 
 static CellPoint *computer_random_move(BoardSubset *subset) {
   srand(time(NULL));
-  return subset->points[rand() % subset->size];
+  return cell_point_copy(subset->points[rand() % subset->size]);
 }
 
 CellPoint *computer_move(Board *board, Cell marker) {
@@ -45,10 +45,9 @@ CellPoint *computer_move(Board *board, Cell marker) {
   if (!subset->size) return NULL;
 
   CellPoint *point = computer_to_over_move(board, subset, marker);
-  if (point == NULL) point = computer_center_move(board);
-  if (point == NULL) point = computer_random_move(subset);
+  if (!point) point = computer_center_move(board);
+  if (!point) point = computer_random_move(subset);
 
-  point = cell_point_create(point->x, point->y);
   board_subset_free(subset);
   return point;
 }

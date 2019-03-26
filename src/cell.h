@@ -16,4 +16,6 @@ char *cell_to_string(Cell cell);
 
 CellPoint *cell_point_create(const int x, const int y);
 
+CellPoint *cell_point_copy(CellPoint *point);
+
 #endif
