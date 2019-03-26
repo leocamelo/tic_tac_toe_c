@@ -10,15 +10,15 @@ typedef struct {
 } Board;
 
 typedef struct {
-  const int size;
-  CellPoint *points;
+  int size;
+  CellPoint **points;
 } BoardSubset;
 
 Board *board_create(void);
 
-void board_subset_free(BoardSubset *subset);
+BoardSubset *board_available_cells(Board *board);
 
-BoardSubset board_available_cells(Board *board);
+void board_subset_free(BoardSubset *subset);
 
 int board_is_full(Board *board);
 

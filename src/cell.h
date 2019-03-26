@@ -14,8 +14,6 @@ int cell_is_empty(Cell cell);
 
 char *cell_to_string(Cell cell);
 
-int cell_point_is_null(CellPoint *point);
-
-CellPoint cell_point_null(void);
+CellPoint *cell_point_create(const int x, const int y);
 
 #endif

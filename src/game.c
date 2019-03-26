@@ -22,15 +22,15 @@ static int game_is_over(Game *game) {
 
 static void game_perform_loop(Game *game) {
   Player current_player;
-  CellPoint point;
+  CellPoint *point;
 
   while (1) {
     current_player = game->turns_manager->current_player;
     point = PLAYER_MOVE_FN(&current_player, game->board);
 
-    if (cell_point_is_null(&point)) break;
+    if (point == NULL) break;
 
-    game->board->cells[point.x][point.y] = current_player.marker;
+    game->board->cells[point->x][point->y] = current_player.marker;
 
     if (game_is_over(game)) break;
 

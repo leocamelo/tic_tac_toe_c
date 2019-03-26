@@ -16,10 +16,11 @@ char *cell_to_string(Cell cell) {
   }
 }
 
-int cell_point_is_null(CellPoint *point) {
-  return point->x == -1 || point->y == -1;
-}
+CellPoint *cell_point_create(const int x, const int y) {
+  CellPoint *point = malloc(sizeof(CellPoint));
 
-CellPoint cell_point_null(void) {
-  return (CellPoint){-1, -1};
+  point->x = x;
+  point->y = y;
+
+  return point;
 }

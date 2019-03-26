@@ -17,23 +17,34 @@ Board *board_create(void) {
   return board;
 }
 
-void board_subset_free(BoardSubset *subset) {
-  free(subset->points);
-}
-
-BoardSubset board_available_cells(Board *board) {
+BoardSubset *board_available_cells(Board *board) {
   int i, j;
   int size = 0;
-  CellPoint *points = malloc(sizeof(CellPoint) * pow(BOARD_SIZE, 2));
+
+  BoardSubset *subset = malloc(sizeof(BoardSubset));
+  CellPoint **points = malloc(sizeof(CellPoint *) * pow(BOARD_SIZE, 2));
 
   for (i = 0; i < BOARD_SIZE; i++) {
     for (j = 0; j < BOARD_SIZE; j++) {
       if (cell_is_empty(board->cells[i][j])) {
-        points[size++] = (CellPoint){i, j};
+        points[size++] = cell_point_create(i, j);
       }
     }
   }
-  return (BoardSubset){size, points};
+
+  subset->size = size;
+  subset->points = points;
+
+  return subset;
+}
+
+void board_subset_free(BoardSubset *subset) {
+  int i;
+
+  for (i = 0; i < subset->size; i++) {
+    free(subset->points[i]);
+  }
+  free(subset->points);
 }
 
 int board_is_full(Board *board) {

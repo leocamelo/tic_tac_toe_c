@@ -9,10 +9,10 @@ START_TEST(test_computer_move_should_return_the_point_for_win) {
     {O, O, _}
   }};
 
-  CellPoint point = computer_move(&board, X);
+  CellPoint *point = computer_move(&board, X);
 
-  ck_assert_int_eq(point.x, 0);
-  ck_assert_int_eq(point.y, 2);
+  ck_assert_int_eq(point->x, 0);
+  ck_assert_int_eq(point->y, 2);
 }
 END_TEST
 
@@ -23,10 +23,10 @@ START_TEST(test_computer_move_should_return_the_point_for_not_lose) {
     {_, _, _}
   }};
 
-  CellPoint point = computer_move(&board, X);
+  CellPoint *point = computer_move(&board, X);
 
-  ck_assert_int_eq(point.x, 2);
-  ck_assert_int_eq(point.y, 2);
+  ck_assert_int_eq(point->x, 2);
+  ck_assert_int_eq(point->y, 2);
 }
 END_TEST
 
@@ -34,10 +34,10 @@ START_TEST(test_computer_move_should_return_the_center_point_when_it_cans) {
   int center = BOARD_SIZE / 2;
 
   Board *board = board_create();
-  CellPoint point = computer_move(board, X);
+  CellPoint *point = computer_move(board, X);
 
-  ck_assert_int_eq(point.x, center);
-  ck_assert_int_eq(point.y, center);
+  ck_assert_int_eq(point->x, center);
+  ck_assert_int_eq(point->y, center);
 }
 END_TEST
 
@@ -48,10 +48,10 @@ START_TEST(test_computer_move_should_return_at_last_a_random_empty_point) {
     {X, O, O}
   }};
 
-  CellPoint point = computer_move(&board, X);
+  CellPoint *point = computer_move(&board, X);
 
-  ck_assert_int_eq(point.x, 0);
-  ck_assert_int_eq(point.y, 0);
+  ck_assert_int_eq(point->x, 0);
+  ck_assert_int_eq(point->y, 0);
 }
 END_TEST
 

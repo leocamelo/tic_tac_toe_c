@@ -24,15 +24,15 @@ START_TEST(test_board_available_cells_should_return_all_empty_cells) {
   int i;
   const int expectedSize = 3;
   const int expected[][2] = {{0, 0}, {1, 1}, {2, 2}};
-  BoardSubset subset = board_available_cells(&board);
+  BoardSubset *subset = board_available_cells(&board);
 
-  ck_assert_int_eq(subset.size, expectedSize);
+  ck_assert_int_eq(subset->size, expectedSize);
 
   for (i = 0; i < expectedSize; i++) {
-    ck_assert_int_eq(subset.points[i].x, expected[i][0]);
-    ck_assert_int_eq(subset.points[i].y, expected[i][1]);
+    ck_assert_int_eq(subset->points[i]->x, expected[i][0]);
+    ck_assert_int_eq(subset->points[i]->y, expected[i][1]);
   }
-  board_subset_free(&subset);
+  board_subset_free(subset);
 }
 END_TEST
 

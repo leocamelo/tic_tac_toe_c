@@ -4,18 +4,18 @@
 #include "grid.h"
 #include "human.h"
 
-CellPoint human_cell_point_by_index(int index) {
+CellPoint *human_cell_point_by_index(int index) {
   int aux = 1, i, j;
 
   for (i = 0; i < BOARD_SIZE; i++) {
     for (j = 0; j < BOARD_SIZE; j++) {
-      if (aux++ == index) return (CellPoint){i, j};
+      if (aux++ == index) return cell_point_create(i, j);
     }
   }
-  return cell_point_null();
+  return NULL;
 }
 
-CellPoint human_move(Board *board) {
+CellPoint *human_move(Board *board) {
   int input, limit = pow(BOARD_SIZE, 2);
 
   char *grid = grid_from_board(board);
@@ -23,13 +23,12 @@ CellPoint human_move(Board *board) {
   free(grid);
 
   PRINTF_FN("Enter [1-%d] to mark or 0 to quit: ", limit);
-  if (!SCANF_FN("%d", &input) || !input) return cell_point_null();
+  if (!SCANF_FN("%d", &input) || !input) return NULL;
 
   if (input > 0 && input <= limit) {
-    CellPoint point = human_cell_point_by_index(input);
+    CellPoint *point = human_cell_point_by_index(input);
 
-    if (!cell_point_is_null(&point) &&
-        cell_is_empty(board->cells[point.x][point.y])) {
+    if (point != NULL && cell_is_empty(board->cells[point->x][point->y])) {
       return point;
     }
   }

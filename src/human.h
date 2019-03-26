@@ -18,8 +18,8 @@ int mocked_scanf(const char *format, int *pointer);
 
 #endif
 
-CellPoint human_cell_point_by_index(int index);
+CellPoint *human_cell_point_by_index(int index);
 
-CellPoint human_move(Board *board);
+CellPoint *human_move(Board *board);
 
 #endif

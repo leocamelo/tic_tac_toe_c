@@ -5,8 +5,8 @@
 
 #ifdef TEST_ENV
 
-CellPoint mocked_human_move(Board *board);
-CellPoint mocked_computer_move(Board *board, Cell marker);
+CellPoint *mocked_human_move(Board *board);
+CellPoint *mocked_computer_move(Board *board, Cell marker);
 
 #define HUMAN_MOVE_FN mocked_human_move
 #define COMPUTER_MOVE_FN mocked_computer_move
@@ -27,6 +27,6 @@ typedef struct {
   Cell marker;
 } Player;
 
-CellPoint player_move(Player *player, Board *board);
+CellPoint *player_move(Player *player, Board *board);
 
 #endif

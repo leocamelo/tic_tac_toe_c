@@ -9,7 +9,7 @@
 #ifdef TEST_ENV
 
 void mocked_printf(const char *format, ...);
-CellPoint mocked_player_move(Player *player, Board *board);
+CellPoint *mocked_player_move(Player *player, Board *board);
 
 #define PRINTF_FN mocked_printf
 #define PLAYER_MOVE_FN mocked_player_move

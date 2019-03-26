@@ -4,11 +4,11 @@
 
 static int player_move_count = 0;
 
-CellPoint mocked_player_move(Player *player, Board *board) {
+CellPoint *mocked_player_move(Player *player, Board *board) {
   (void)(player);
   player_move_count++;
-  BoardSubset subset = board_available_cells(board);
-  return subset.size ? subset.points[0] : cell_point_null();
+  BoardSubset *subset = board_available_cells(board);
+  return subset->size ? subset->points[0] : NULL;
 }
 
 START_TEST(test_game_create_should_returns_an_initial_game) {
