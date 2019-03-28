@@ -6,6 +6,7 @@
 
 Board *board_create(void) {
   Board *board = malloc(sizeof(Board));
+
   int i, j;
 
   for (i = 0; i < BOARD_SIZE; i++) {
@@ -18,11 +19,10 @@ Board *board_create(void) {
 }
 
 BoardSubset *board_available_cells(Board *board) {
-  int i, j;
-  int size = 0;
-
   BoardSubset *subset = malloc(sizeof(BoardSubset));
   CellPoint **points = malloc(sizeof(CellPoint *) * pow(BOARD_SIZE, 2));
+
+  int size = 0, i, j;
 
   for (i = 0; i < BOARD_SIZE; i++) {
     for (j = 0; j < BOARD_SIZE; j++) {

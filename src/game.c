@@ -7,8 +7,8 @@
 Game *game_create(void) {
   Game *game = malloc(sizeof(Game));
 
-  Player player1 = {Human, X};
-  Player player2 = {Computer, O};
+  Player *player1 = player_create(Human, X);
+  Player *player2 = player_create(Computer, O);
 
   game->board = board_create();
   game->turns_manager = turns_manager_create(player1, player2);
@@ -21,16 +21,16 @@ static int game_is_over(Game *game) {
 }
 
 static void game_perform_loop(Game *game) {
-  Player current_player;
+  Player *current_player;
   CellPoint *point;
 
   while (1) {
     current_player = game->turns_manager->current_player;
-    point = PLAYER_MOVE_FN(&current_player, game->board);
+    point = PLAYER_MOVE_FN(current_player, game->board);
 
     if (!point) break;
 
-    game->board->cells[point->x][point->y] = current_player.marker;
+    game->board->cells[point->x][point->y] = current_player->marker;
 
     if (game_is_over(game)) break;
 

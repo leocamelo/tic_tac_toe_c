@@ -14,10 +14,10 @@ CellPoint *mocked_computer_move(Board *board, Cell marker) {
 }
 
 START_TEST(test_player_move_should_call_human_move_for_human_players){
-  Player player = {Human, X};
+  Player *player = player_create(Human, X);
   Board *board = board_create();
 
-  CellPoint *point = player_move(&player, board);
+  CellPoint *point = player_move(player, board);
 
   ck_assert_int_eq(point->x, 1);
   ck_assert_int_eq(point->y, 1);

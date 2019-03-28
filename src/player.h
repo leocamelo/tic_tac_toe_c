@@ -27,6 +27,8 @@ typedef struct {
   Cell marker;
 } Player;
 
+Player *player_create(PlayerKind kind, Cell marker);
+
 CellPoint *player_move(Player *player, Board *board);
 
 #endif

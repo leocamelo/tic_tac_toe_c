@@ -21,11 +21,11 @@ START_TEST(test_game_create_should_returns_an_initial_game) {
     }
   }
 
-  ck_assert_int_eq(game->turns_manager->current_player.kind, Human);
-  ck_assert_int_eq(game->turns_manager->current_player.marker, X);
+  ck_assert_int_eq(game->turns_manager->current_player->kind, Human);
+  ck_assert_int_eq(game->turns_manager->current_player->marker, X);
 
-  ck_assert_int_eq(game->turns_manager->next_player.kind, Computer);
-  ck_assert_int_eq(game->turns_manager->next_player.marker, O);
+  ck_assert_int_eq(game->turns_manager->next_player->kind, Computer);
+  ck_assert_int_eq(game->turns_manager->next_player->marker, O);
 }
 END_TEST
 
