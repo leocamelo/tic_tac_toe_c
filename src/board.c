@@ -39,9 +39,9 @@ BoardSubset *board_available_cells(Board *board) {
 }
 
 void board_subset_free(BoardSubset *subset) {
-  int i;
+  int i, size = subset->size;
 
-  for (i = 0; i < subset->size; i++) {
+  for (i = 0; i < size; i++) {
     free(subset->points[i]);
   }
   free(subset->points);

@@ -5,18 +5,12 @@
 #include "human.h"
 
 CellPoint *human_cell_point_by_index(int index) {
-  int aux = 1, i, j;
-
-  for (i = 0; i < BOARD_SIZE; i++) {
-    for (j = 0; j < BOARD_SIZE; j++) {
-      if (aux++ == index) return cell_point_create(i, j);
-    }
-  }
-  return NULL;
+  index--;
+  return cell_point_create(index / BOARD_SIZE, index % BOARD_SIZE);
 }
 
 CellPoint *human_move(Board *board) {
-  int limit = pow(BOARD_SIZE, 2), input;
+  int input, limit = pow(BOARD_SIZE, 2);
 
   char *grid = grid_from_board(board);
 

@@ -8,18 +8,18 @@ static int computer_check_board_match(Board board, CellPoint *point, Cell marker
 }
 
 static CellPoint *computer_to_over_move(Board *board, BoardSubset *subset, Cell marker) {
-  int i;
+  int i, j, size = subset->size;
 
-  for (i = 0; i < subset->size; i++) {
-    if (computer_check_board_match(*board, subset->points[i], marker)) {
-      return cell_point_copy(subset->points[i]);
-    }
-  }
+  CellPoint *point;
+  Cell markers[2] = {marker, marker == X ? O : X};
 
-  marker = (marker == X ? O : X);
-  for (i = 0; i < subset->size; i++) {
-    if (computer_check_board_match(*board, subset->points[i], marker)) {
-      return cell_point_copy(subset->points[i]);
+  for (i = 0; i < 2; i++) {
+    for (j = 0; j < size; j++) {
+      point = subset->points[j];
+
+      if (computer_check_board_match(*board, point, markers[i])) {
+        return cell_point_copy(point);
+      }
     }
   }
 
