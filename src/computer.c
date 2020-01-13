@@ -8,7 +8,8 @@ static int computer_check_board_match(Board board, CellPoint *point, Cell marker
 }
 
 static CellPoint *computer_to_over_move(Board *board, BoardSubset *subset, Cell marker) {
-  int i, j, size = subset->size;
+  int i, j;
+  int size = subset->size;
 
   CellPoint *point;
   Cell markers[2] = {marker, marker == X ? O : X};

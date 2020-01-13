@@ -22,7 +22,8 @@ BoardSubset *board_available_cells(Board *board) {
   BoardSubset *subset = malloc(sizeof(BoardSubset));
   CellPoint **points = malloc(sizeof(CellPoint *) * pow(BOARD_SIZE, 2));
 
-  int size = 0, i, j;
+  int i, j;
+  int size = 0;
 
   for (i = 0; i < BOARD_SIZE; i++) {
     for (j = 0; j < BOARD_SIZE; j++) {
@@ -39,7 +40,8 @@ BoardSubset *board_available_cells(Board *board) {
 }
 
 void board_subset_free(BoardSubset *subset) {
-  int i, size = subset->size;
+  int i;
+  int size = subset->size;
 
   for (i = 0; i < size; i++) {
     free(subset->points[i]);
@@ -59,7 +61,8 @@ int board_is_full(Board *board) {
 }
 
 static int board_has_lr_diagonal_match(Board *board) {
-  int count = 0, i;
+  int i;
+  int count = 0;
 
   for (i = 0; i < BOARD_SIZE; i++) {
     if (board->cells[i][i] == X) count++;
@@ -69,7 +72,8 @@ static int board_has_lr_diagonal_match(Board *board) {
 }
 
 static int board_has_rl_diagonal_match(Board *board) {
-  int count = 0, i;
+  int i;
+  int count = 0;
   int pivot = BOARD_SIZE - 1;
 
   for (i = 0; i < BOARD_SIZE; i++) {
@@ -80,7 +84,7 @@ static int board_has_rl_diagonal_match(Board *board) {
 }
 
 static int board_has_row_match(Board *board) {
-  int count, i, j;
+  int i, j, count;
 
   for (i = 0; i < BOARD_SIZE; i++) {
     count = 0;
@@ -95,7 +99,7 @@ static int board_has_row_match(Board *board) {
 }
 
 static int board_has_col_match(Board *board) {
-  int count, i, j;
+  int i, j, count;
 
   for (i = 0; i < BOARD_SIZE; i++) {
     count = 0;

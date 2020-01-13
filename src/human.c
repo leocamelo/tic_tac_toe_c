@@ -10,7 +10,8 @@ CellPoint *human_cell_point_by_index(int index) {
 }
 
 CellPoint *human_move(Board *board) {
-  int input, limit = pow(BOARD_SIZE, 2);
+  int input;
+  int limit = pow(BOARD_SIZE, 2);
 
   char *grid = grid_from_board(board);
 
